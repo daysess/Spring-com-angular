@@ -1,4 +1,4 @@
-package br.com.daysesoares.helpdesk.api.security;
+package br.com.daysesoares.helpdesk.api.security.config;
 
 import java.util.Arrays;
 
@@ -19,6 +19,10 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import br.com.daysesoares.helpdesk.api.security.JWTAuthenticationFilter;
+import br.com.daysesoares.helpdesk.api.security.JWTAuthorizationFilter;
+import br.com.daysesoares.helpdesk.api.security.JWTUtil;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -34,7 +38,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private JWTUtil jwtUtil;
 	
 	private static final String[] PUBLIC_MATCHERS = {
-			"/api/auth/**",
 			"/user/teste/**"
 			
 	};
