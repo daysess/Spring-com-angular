@@ -10,7 +10,7 @@ import br.com.daysesoares.helpdesk.api.entity.Ticket;
 public interface TicketRepository extends MongoRepository<Ticket, String>{
 
 	Page<Ticket> findByUserIdOrderByDateDesc(String userId, Pageable pages);
-	
+	/*
 	Page<Ticket> findByTitleIgnoreCaseContainingAndStatusAndPriorityOrderByDateDesc(
 			String title, String status, String Priority, Pageable pages);
 	
@@ -19,7 +19,7 @@ public interface TicketRepository extends MongoRepository<Ticket, String>{
 	
 	Page<Ticket> findByTitleIgnoreCaseContainingAndStatusAndPriorityAssignedUserIdOrderByDateDesc(
 			String title, String status, String Priority, Pageable pages);
-	
+	*/
 	Page<Ticket> findByNumber(Integer number, Pageable pages);
 	
 }
