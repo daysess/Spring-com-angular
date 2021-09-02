@@ -1,6 +1,12 @@
 package br.com.daysesoares.helpdesk.api.entity;
 
-import javax.validation.constraints.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -23,8 +29,8 @@ public class User {
 	@NotBlank(message = "password requerid")
 	@Size(min = 6)
 	private String password;
-	
-	private ProfileEnum profile;
+		
+	private Set<Integer> profiles = new HashSet<>();
 
 	public String getId() {
 		return id;
@@ -49,14 +55,15 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public ProfileEnum getProfile() {
-		return profile;
+		
+	public Set<ProfileEnum> getProfiles(){
+		return profiles.stream().map(x -> ProfileEnum.toEnum(x)).collect(Collectors.toSet());
 	}
-
-	public void setProfile(ProfileEnum profile) {
-		this.profile = profile;
+	
+	public void addProfile(ProfileEnum profile) {
+		profiles.add(profile.getCod());
 	}
+	
 	
 	
 }
