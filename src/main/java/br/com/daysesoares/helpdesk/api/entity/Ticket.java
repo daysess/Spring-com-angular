@@ -20,7 +20,7 @@ public class Ticket {
 	@DBRef(lazy = true)
 	private User user;
 	
-	private Date date;
+	private Date dateRegistration;
 	
 	private String title;
 	
@@ -56,12 +56,12 @@ public class Ticket {
 		this.user = user;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getDateRegistration() {
+		return dateRegistration;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDateRegistration(Date dateRegistration) {
+		this.dateRegistration = dateRegistration;
 	}
 
 	public String getTitle() {
