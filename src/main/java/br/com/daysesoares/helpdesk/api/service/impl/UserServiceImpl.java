@@ -2,8 +2,7 @@ package br.com.daysesoares.helpdesk.api.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.querydsl.QPageRequest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,11 +30,12 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User createOrUpdate(UserDTO userDTO) {
-		String senha = pe.encode(userDTO.getSenha());
+		String password = pe.encode(userDTO.getPassword());
 		User user = new User();
+		user.setId(userDTO.getId());
 		user.setEmail(userDTO.getEmail());
-		user.setPassword(senha);
-		user.addProfile(ProfileEnum.ROLE_ADMIN);
+		user.setPassword(password);
+		user.addProfile(ProfileEnum.toDescription(userDTO.getProfile()));
 		
 		return userRepository.save(user);
 	}
@@ -56,9 +56,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public Page<User> findAll(int page, int count) {
-		@SuppressWarnings("deprecation")
-		Pageable pages = new QPageRequest(page, count);
-		return userRepository.findAll(pages);
+		PageRequest pageRequest = PageRequest.of(page, count);
+		return userRepository.findAll(pageRequest);
 	}
 
 	@Override

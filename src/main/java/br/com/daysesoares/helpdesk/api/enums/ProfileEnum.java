@@ -3,43 +3,33 @@ package br.com.daysesoares.helpdesk.api.enums;
 public enum ProfileEnum {
 
 	ROLE_ADMIN(1, "ROLE_ADMIN"),
-	ROLE_COSTUMER(2, "ROLE_COSTUMER"),
+	ROLE_CUSTOMER(2, "ROLE_CUSTOMER"),
 	ROLE_TECHNICIAN(3, "ROLE_TECHNICIAN");
 	
 	private Integer cod;
-	private String descricao;
+	private String description;
 	
 	
-	private ProfileEnum(Integer cod, String descricao) {
+	private ProfileEnum(Integer cod, String description) {
 		this.cod = cod;
-		this.descricao = descricao;
+		this.description = description;
 	}
-
-
 
 	public Integer getCod() {
 		return cod;
 	}
 
-
-
 	public void setCod(Integer cod) {
 		this.cod = cod;
 	}
 
-
-
-	public String getDescricao() {
-		return descricao;
+	public String getDescription() {
+		return description;
 	}
 
-
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-
-
 
 	public static ProfileEnum toEnum(Integer cod) {
 		if (cod == null) {
@@ -51,7 +41,21 @@ public enum ProfileEnum {
 			}
 		}
 
-		throw new IllegalArgumentException("Id inválido: " + cod);
+		throw new IllegalArgumentException("Id invalid: " + cod);
+	}
+
+
+
+	public static ProfileEnum toDescription(String profile) {
+		if (profile == null) {
+			return null;
+		}
+		for(ProfileEnum x : ProfileEnum.values()) {
+			if(profile.equals(x.getDescription())) {
+				return x;
+			}
+		}
+		throw new IllegalArgumentException("Invalid Profile Description: " + profile);
 	}
 	
 }

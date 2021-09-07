@@ -39,7 +39,7 @@ public class UserController {
 		if(obj == null) {
 			return ResponseEntity.badRequest().body("Erro ao cadastrar novo usuario!");
 		}
-		userDTO.setSenha(null);
+		userDTO.setPassword(null);
 		return ResponseEntity.ok(userDTO);
 	}
 

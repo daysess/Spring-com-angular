@@ -12,6 +12,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.daysesoares.helpdesk.api.enums.ProfileEnum;
 
 
@@ -26,6 +28,7 @@ public class User {
 	@Email(message = "email invalid")
 	private String email;
 	
+	@JsonIgnore
 	@NotBlank(message = "password requerid")
 	@Size(min = 6)
 	private String password;

@@ -86,7 +86,7 @@ public class TicketServiceImpl implements TicketService {
 	public Page<Ticket> findByParameterAndAssignedUser(int page, int count, String title, String status,
 			String priority, String assignedUser) {
 		PageRequest pages = PageRequest.of(page, count);
-		return ticketRepository.findByTitleIgnoreCaseContainingAndStatusAndPriorityAndAssignedUserId(title, status, priority, pages);
+		return ticketRepository.findByTitleIgnoreCaseContainingAndStatusAndPriorityAndAssignedUserId(title, status, priority, assignedUser, pages);
 	}
 
 }
